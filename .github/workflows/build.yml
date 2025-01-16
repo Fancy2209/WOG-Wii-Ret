@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         # Add game versions here
-        version: [GAMEID]
+        version: [WGOP]
 
     steps:
     # Checkout the repository
@@ -41,19 +41,19 @@ jobs:
             build/${{ matrix.version }}/report.json
 
     # Upload progress if we're on the main branch
-    - name: Upload progress
+    #- name: Upload progress
       # If you're using a different branch, change this to match
-      if: github.ref == 'refs/heads/main'
-      continue-on-error: true
-      env:
+      #if: github.ref == 'refs/heads/main'
+      #continue-on-error: true
+      #env:
         # Replace with your project slug
-        PROGRESS_SLUG: prime
+        #PROGRESS_SLUG: prime
         # Set the API key in your repository secrets
-        PROGRESS_API_KEY: ${{ secrets.PROGRESS_API_KEY }}
-      run: |
-        python tools/upload_progress.py -b https://progress.decomp.club/ \
-          -p $PROGRESS_SLUG -v ${{ matrix.version }} \
-          build/${{ matrix.version }}/progress.json
+        #PROGRESS_API_KEY: ${{ secrets.PROGRESS_API_KEY }}
+      #run: |
+        #python tools/upload_progress.py -b https://progress.decomp.club/ \
+          #-p $PROGRESS_SLUG -v ${{ matrix.version }} \
+          #build/${{ matrix.version }}/progress.json
 
     # Upload map files
     - name: Upload map

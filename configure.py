@@ -196,7 +196,7 @@ cflags_base = [
     "-RTTI off",
     "-fp_contract on",
     "-str reuse",
-    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+    "-enc SJIS",  # For GC compilers, replace with `-multibyte`
     "-i include",
     f"-i build/{config.version}/include",
     f"-DBUILD_VERSION={version_num}",
@@ -230,16 +230,16 @@ cflags_rel = [
 config.linker_version = "GC/3.0a5"
 
 # Helper function for Dolphin libraries
-#def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
-#    return {
-#        "lib": lib_name,
-#        "mw_version": "GC/1.2.5n",
-#        "cflags": cflags_base,
-#        "progress_category": "sdk",
-#        "objects": objects,
-#    }
-#
-#
+def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5",
+        "cflags": cflags_base,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
 ## Helper function for REL script objects
 #def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 #    return {
@@ -264,16 +264,16 @@ def MatchingFor(*versions):
 config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
-#    {
-#        "lib": "Runtime.PPCEABI.H",
-#        "mw_version": config.linker_version,
-#        "cflags": cflags_runtime,
-#        "progress_category": "sdk",  # str | List[str]
-#        "objects": [
-#            Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
-#            Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
-#        ],
-#    },
+    {
+        "lib": "Runtime.PPCEABI.H",
+        "mw_version": config.linker_version,
+        "cflags": cflags_runtime,
+        "progress_category": "sdk",  # str | List[str]
+        "objects": [
+            Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
+            Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
+        ],
+    },
 ]
 
 
@@ -298,7 +298,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 # Adjust as desired for your project
 config.progress_categories = [
     #ProgressCategory("game", "Game Code"),
-    #ProgressCategory("sdk", "SDK Code"),
+    ProgressCategory("sdk", "SDK Code"),
 ]
 config.progress_each_module = args.verbose
 
