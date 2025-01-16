@@ -165,10 +165,10 @@ config.ldflags = [
     "-nodefaults",
 ]
 if args.debug:
-    config.ldflags.append("-g")  # Or -gdwarf-2 for Wii linkers
+    config.ldflags.append("-gdwarf-2")
 if args.map:
     config.ldflags.append("-mapunused")
-    # config.ldflags.append("-listclosure") # For Wii linkers
+    config.ldflags.append("-listclosure")
 
 # Use for any additional files that should cause a re-configure when modified
 config.reconfig_deps = []
@@ -206,7 +206,7 @@ cflags_base = [
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
-    cflags_base.extend(["-sym on", "-DDEBUG=1"])
+    cflags_base.extend(["-sym dwarf-2", "-DDEBUG=1"])
 else:
     cflags_base.append("-DNDEBUG=1")
 
