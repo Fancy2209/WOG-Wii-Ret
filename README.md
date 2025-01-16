@@ -107,7 +107,7 @@ Building
   git clone https://github.com/my/repo.git
   ```
 
-- Copy your game's WAD image to `orig/GAMEID`.
+- Copy your game's WAD image to `orig/WGOP`.
 - Run extract.bat or extract.sh
   - After the initial build, the disc image can be deleted to save space.
 
