@@ -235,7 +235,7 @@ def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a5",
         "cflags": cflags_base,
-        "progress_category": "sdk",
+        #"progress_category": "sdk",
         "objects": objects,
     }
 
@@ -268,7 +268,7 @@ config.libs = [
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
-        "progress_category": "sdk",  # str | List[str]
+        #"progress_category": "sdk",  # str | List[str]
         "objects": [
             Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
@@ -298,7 +298,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 # Adjust as desired for your project
 config.progress_categories = [
     #ProgressCategory("game", "Game Code"),
-    ProgressCategory("sdk", "SDK Code"),
+    #ProgressCategory("sdk", "SDK Code"),
 ]
 config.progress_each_module = args.verbose
 
