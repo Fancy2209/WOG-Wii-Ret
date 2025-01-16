@@ -3,4 +3,4 @@ object: sys/main.dol
 hash: 7c8cbf940e6c3e4bffeced3e5cfb9b36191c7a08
 symbols: config/WGOP/symbols.txt
 splits: config/WGOP/splits.txt
-mw_comment_version: 15
+mw_comment_version: 14
