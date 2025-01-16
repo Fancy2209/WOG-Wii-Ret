@@ -1,12 +1,15 @@
-Some Game  
-[![Build Status]][actions] ![Progress] ![DOL Progress] ![RELs Progress] [![Discord Badge]][discord]
+World of Goo (WiiWare)
+<!-- [![Build Status]][actions] ![Progress] ![DOL Progress] ![RELs Progress] [![Discord Badge]][discord] -->
 =============
 
 <!--
 Replace with your repository's URL.
 -->
+
+<!---
 [Build Status]: https://github.com/Fancy2209/WOG-Wii-Ret/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/Fancy2209/WOG-Wii-Ret/actions/workflows/build.yml
+-->
 
 <!---
 Code progress URL:
