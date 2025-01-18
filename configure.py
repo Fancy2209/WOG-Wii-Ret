@@ -220,11 +220,25 @@ cflags_runtime = [
     "-inline auto",
 ]
 
-# REL flags
-cflags_rel = [
+# Boy flags
+cflags_boy = [
     *cflags_base,
-    "-sdata 0",
-    "-sdata2 0",
+    "-ir include/Boy",
+    "-ir include",
+    "-DGOO_PLATFORM_WII",
+]
+
+# BoyLib flags
+cflags_boylib = [
+    *cflags_base,
+    "-ir include/BoyLib"
+    "-DARCH_IS_BIG_ENDIAN",
+]
+
+# tinyxml flags
+cflags_tinyxml = [
+    *cflags_base,
+    "-ir include/tinyxml,
 ]
 
 config.linker_version = "GC/3.0a5"
@@ -235,16 +249,26 @@ def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a5",
         "cflags": cflags_base,
-        #"progress_category": "sdk",
+        "progress_category": "sdk",
         "objects": objects,
     }
 
 
 ## Helper function for REL script objects
+def DOL(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5",
+        "cflags": cflags_base,
+        "progress_category": "game",
+        "objects": objects,
+    }
+
+## Helper function for REL script objects
 #def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 #    return {
 #        "lib": lib_name,
-#        "mw_version": "GC/1.3.2",
+#        "mw_version": "GC/3.0a5",
 #        "cflags": cflags_rel,
 #        "progress_category": "game",
 #        "objects": objects,
@@ -286,8 +310,8 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
     # Don't modify the link order for matching builds
     if not config.non_matching:
         return objects
-    if module_id == 0:  # DOL
-        return objects + ["dummy.c"]
+    #if module_id == 0:  # DOL
+        #return objects + ["dummy.c"]
     return objects
 
 # Uncomment to enable the link order callback.
@@ -298,7 +322,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 # Adjust as desired for your project
 config.progress_categories = [
     #ProgressCategory("game", "Game Code"),
-    #ProgressCategory("sdk", "SDK Code"),
+    ProgressCategory("sdk", "SDK Code"),
 ]
 config.progress_each_module = args.verbose
 
