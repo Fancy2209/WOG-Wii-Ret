@@ -238,7 +238,7 @@ cflags_boylib = [
 # tinyxml flags
 cflags_tinyxml = [
     *cflags_base,
-    "-ir include/tinyxml,
+    "-ir include/tinyxml",
 ]
 
 config.linker_version = "GC/3.0a5"
